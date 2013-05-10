@@ -10,11 +10,19 @@ package com.webility.ibutler.model
 	public class Model 
 	{
 		public var application:Application;
-		public var lockerAddressList:Array = ['192.168.0.15', '192.168.0.16'];
+		public var lockerAddressList:Array = ['127.0.0.1', '192.168.0.16'];
 		public var socket:Socket;
 		public var serverSocket:ServerSocket;
 		public var dataToSend:String = '';
 		public var doors:Array;
+		public var usedDoors:Array;
+		public var currentOpenDoor:String;
+		public var currentUnit:String;
+		public var agentArray:Array;
+		public var currentAgent:String;
+		public var apartmentArray:Array;
+		public var pickUpArray:Array;
+		public var currentModel:String;
 		private static var _instance:Model;
 		
 		public static function getInstance():Model 

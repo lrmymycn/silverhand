@@ -4,6 +4,9 @@ package com.webility.ibutler.view
 	import com.webility.ibutler.model.Model;
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
+	import com.adobe.cairngorm.control.CairngormEvent;
+	import com.adobe.cairngorm.control.CairngormEventDispatcher;
+	import com.webility.ibutler.control.Controller;
 	/**
 	 * ...
 	 * @author Sam Wang
@@ -24,21 +27,9 @@ package com.webility.ibutler.view
 		
 		private function onMouseClick(e:MouseEvent):void 
 		{
-			var destination = _code.charAt(0);
-			var ip = '';
-			if (destination == '1') {
-				ip = _model.lockerAddressList[0];
-			}else if (destination == '2') {
-				ip = _model.lockerAddressList[1];
-			}
-			
-			if (ip == '') {
-				_model.application.logger.log('No client is connected');
-			}else {
-				_model.application.logger.log('Connecting to ' +  ip);
-				_model.dataToSend = _code;
-				_model.socket.connect(ip, 23);
-			}
+			var event:CairngormEvent = new CairngormEvent(Controller.OPEN);
+			event.data = _code;
+			CairngormEventDispatcher.getInstance().dispatchEvent(event);
 			
 			open();
 		}
