@@ -10,7 +10,7 @@ package com.webility.ibutler.model
 	public class Model 
 	{
 		public var application:Application;
-		public var lockerAddressList:Array = ['127.0.0.1', '192.168.0.16'];
+		public var lockerAddressList:Array;
 		public var socket:Socket;
 		public var serverSocket:ServerSocket;
 		public var dataToSend:String = '';

@@ -12,6 +12,8 @@ package com.webility.ibutler.command
 	import flash.net.Socket;
 	import flash.net.ServerSocket;
 	import flash.events.ServerSocketConnectEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	/**
@@ -26,10 +28,7 @@ package com.webility.ibutler.command
 		public function execute(e:CairngormEvent):void 
 		{
 			_model = Model.getInstance();
-			
-			initSocket();
-			initAgents();
-			initResidents();
+			loadConfig();
 		}
 		
 		private function initSocket():void
@@ -154,50 +153,74 @@ package com.webility.ibutler.command
 			_model.application.logger.log('Connection timeout');
 		}
 		
-		private function initAgents():void 
+		private function loadConfig():void 
+		{
+			var urlLoader:URLLoader = new URLLoader();
+			var urlRequest:URLRequest = new URLRequest('config.xml');
+			urlLoader.addEventListener(Event.COMPLETE, onConfigLoaded);
+			urlLoader.load(urlRequest);
+		}
+		
+		private function onConfigLoaded(e:Event):void 
+		{
+			var loader:URLLoader = e.target as URLLoader;
+			if (loadConfig != null) {
+				var xml:XML = new XML(loader.data);
+				parseXML(xml);;
+			}else {
+				_model.application.logger.log('Config file loading failed');
+			}
+		}
+		
+		private function parseXML(xml:XML):void 
+		{
+			parseLock(xml..locker);
+			parseAgent(xml..agent);
+			parseApartment(xml..apartment);
+		}
+		
+		private function parseLock(dataList:XMLList):void 
 		{
 			var arr:Array = new Array();
-			var a1:AgentModel = new AgentModel();
-			a1.name = 'dryclean';
-			a1.password = '123456';
-			a1.doors = new Array('1701', '2701');
-			arr.push(a1);
+			for each(var lock:XML in dataList) {
+				arr.push(lock);
+			}
+			_model.lockerAddressList = arr;
 			
-			var a2:AgentModel = new AgentModel();
-			a2.name = 'grocery';
-			a2.password = '123456';
-			a2.doors = new Array('2201');
-			arr.push(a2);
-			
-			var a3:AgentModel = new AgentModel();
-			a3.name = 'takeaway';
-			a3.password = '123456';
-			a3.doors = new Array('1201');
-			arr.push(a3);
-			
-			var a4:AgentModel = new AgentModel();
-			a4.name = 'parcel';
-			a4.password = '123456';
-			a4.doors = new Array('1101', '1201');
-			
+			initSocket();
+		}
+		
+		private function parseAgent(dataList:XMLList):void 
+		{
+			var arr:Array = new Array();
+			for each(var agent:XML in dataList) {
+				var model:AgentModel = new AgentModel();
+				model.name = agent.name;
+				model.password = agent.password;
+				model.doors = new Array();
+				parseDoor(agent..door, model);
+				arr.push(model);
+			}
 			_model.agentArray = arr;
 		}
 		
-		private function initResidents():void 
+		private function parseDoor(doors:XMLList, model:AgentModel):void 
+		{
+			for each (var door:XML in doors) {
+				model.doors.push(door);
+			}
+		}
+		
+		private function parseApartment(dataList:XMLList):void 
 		{
 			var arr:Array = new Array();
-			var r1:ApartmentModel = new ApartmentModel();
-			r1.unit = 'A101';
-			r1.email = 'huisan@outlook.com';
-			r1.mobile = '0413740145';
-			arr.push(r1);
-			
-			var r2:ApartmentModel = new ApartmentModel();
-			r2.unit = 'A102';
-			r2.email = 'huisan@outlook.com';
-			r2.mobile = '0413740145';
-			arr.push(r2);
-			
+			for each(var apartment:XML in dataList) {
+				var model:ApartmentModel = new ApartmentModel();
+				model.unit = apartment.unit;
+				model.email = apartment.email;
+				model.mobile = apartment.mobile;
+				arr.push(model);
+			}
 			_model.apartmentArray = arr;
 			
 			_model.application.apartmentPanel.init();
