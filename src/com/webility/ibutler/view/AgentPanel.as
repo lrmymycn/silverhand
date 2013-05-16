@@ -21,12 +21,19 @@ package com.webility.ibutler.view
 			
 			_mc.btn_dropoff.buttonMode = true;
 			_mc.btn_logoff.buttonMode = true;
-			_mc.btn_dropoff.addEventListener(MouseEvent.CLICK, onDropOffClick);
+			_mc.btn_dropoff.addEventListener(MouseEvent.MOUSE_UP, onDropOffMouseUp);
+			_mc.btn_dropoff.addEventListener(MouseEvent.MOUSE_DOWN, onDropOffMouseDown);
 			_mc.btn_logoff.addEventListener(MouseEvent.CLICK, onLogOffClick);
 		}
 		
-		private function onDropOffClick(e:MouseEvent):void 
+		private function onDropOffMouseDown(e:MouseEvent):void 
 		{
+			_mc.btn_dropoff.gotoAndStop(2);
+		}
+		
+		private function onDropOffMouseUp(e:MouseEvent):void 
+		{
+			_mc.btn_logoff.gotoAndStop(1);
 			this.hide();
 			_model.application.apartmentPanel.show();
 		}

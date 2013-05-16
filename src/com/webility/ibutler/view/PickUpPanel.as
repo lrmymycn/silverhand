@@ -4,6 +4,7 @@ package com.webility.ibutler.view
 	import com.webility.ibutler.model.Model;
 	import com.webility.ibutler.model.PickUpModel;
 	import flash.display.MovieClip;
+	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
 	import com.adobe.cairngorm.control.CairngormEvent;
 	import com.adobe.cairngorm.control.CairngormEventDispatcher;
@@ -23,26 +24,24 @@ package com.webility.ibutler.view
 			
 			this.hide();
 			
-			_mc.btn_enter.buttonMode = true;
-			_mc.btn_enter.addEventListener(MouseEvent.CLICK, onMouseClick);
-			
 			_mc.btn_back.buttonMode = true;
 			_mc.btn_back.addEventListener(MouseEvent.CLICK, onBackClick);
-			
-			
-			//test
-			
-			/*
-			var pickUpMode:PickUpModel = new PickUpModel();
-			pickUpMode.passcode = '123456';
-			pickUpMode.door = '1701'
-			pickUpMode.unit = 'A101';
-			
-			_model.pickUpArray.push(pickUpMode);
-			*/
+			_mc.txt_code.addEventListener(FocusEvent.FOCUS_IN, onCodeFocus);
+			//_mc.txt_code.addEventListener(FocusEvent.FOCUS_OUT, onCodeBlur);
 		}
 		
-		private function onMouseClick(e:MouseEvent):void 
+		private function onCodeFocus(e:FocusEvent):void 
+		{
+			_mc.mc_code_bg.gotoAndStop(2);
+			_model.currentInput = _mc.txt_code;
+		}
+		
+		private function onCodeBlur(e:FocusEvent):void 
+		{
+			_mc.mc_code_bg.gotoAndStop(1);
+		}
+		
+		public function login():void 
 		{
 			var code:String = _mc.txt_code.text;
 			if (code.length != 6) {
@@ -96,11 +95,17 @@ package com.webility.ibutler.view
 		public function hide():void
 		{
 			_mc.y = -2000;
+			_mc.txt_code.text = '';
+			_model.application.keyboard.hide();
 		}
 		
 		public function show():void 
 		{
 			_mc.y = 150;
+			_model.application.keyboard.show();
+
+			_mc.txt_code.stage.focus = _mc.txt_code;
+			_mc.txt_code.setSelection(0, _mc.txt_code.length);
 		}
 	}
 

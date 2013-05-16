@@ -3,6 +3,7 @@ package com.webility.ibutler.model
 	import com.webility.ibutler.view.Application;
 	import flash.net.Socket;
 	import flash.net.ServerSocket;
+	import flash.text.TextField;
 	/**
 	 * ...
 	 * @author Sam Wang
@@ -23,6 +24,7 @@ package com.webility.ibutler.model
 		public var apartmentArray:Array;
 		public var pickUpArray:Array;
 		public var currentModel:String;
+		public var currentInput:TextField;
 		private static var _instance:Model;
 		
 		public static function getInstance():Model 

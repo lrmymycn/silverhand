@@ -21,19 +21,33 @@ package com.webility.ibutler.view
 			_mc.btn_agentlogin.buttonMode = true;
 			_mc.btn_pickup.buttonMode = true;
 			
-			_mc.btn_agentlogin.addEventListener(MouseEvent.CLICK, onAgentLoginClick);
-			_mc.btn_pickup.addEventListener(MouseEvent.CLICK, onPickUpClick);
+			_mc.btn_agentlogin.addEventListener(MouseEvent.MOUSE_DOWN, onAgentMouseDown);
+			_mc.btn_agentlogin.addEventListener(MouseEvent.MOUSE_UP, onAgentLoginMouseUp);
+			_mc.btn_pickup.addEventListener(MouseEvent.MOUSE_DOWN, onPickUpMouseDown);
+			_mc.btn_pickup.addEventListener(MouseEvent.MOUSE_UP, onPickUpMouseUp);
 		}
 		
-		private function onAgentLoginClick(e:MouseEvent):void 
+		private function onAgentMouseDown(e:MouseEvent):void 
 		{
+			_mc.btn_agentlogin.gotoAndStop(2);
+		}
+		
+		private function onAgentLoginMouseUp(e:MouseEvent):void 
+		{
+			_mc.btn_agentlogin.gotoAndStop(1);
 			_model.currentModel = Application.AGENT;
 			this.hide();
 			_model.application.agentLoginPanel.show();
 		}
 		
-		private function onPickUpClick(e:MouseEvent):void 
+		private function onPickUpMouseDown(e:MouseEvent):void 
 		{
+			_mc.btn_pickup.gotoAndStop(2);
+		}
+		
+		private function onPickUpMouseUp(e:MouseEvent):void 
+		{
+			_mc.btn_pickup.gotoAndStop(1);
 			_model.currentModel = Application.PICKUP;
 			this.hide();
 			_model.application.pickUpPanel.show();

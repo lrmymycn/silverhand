@@ -21,11 +21,19 @@ package com.webility.ibutler.view
 			this.hide();
 			
 			_mc.btn_complete.buttonMode = true;
-			_mc.btn_complete.addEventListener(MouseEvent.CLICK, onMouseClick);
+			_mc.btn_complete.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+			_mc.btn_complete.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
 		}
 		
-		private function onMouseClick(e:MouseEvent):void 
+		private function onMouseDown(e:MouseEvent):void 
 		{
+			_mc.btn_complete.gotoAndStop(2);
+		}
+		
+		private function onMouseUp(e:MouseEvent):void 
+		{
+			_mc.btn_complete.gotoAndStop(1);
+			
 			var pickUpCode = generateRandomString(6);
 			var pickUpMode:PickUpModel = new PickUpModel();
 			pickUpMode.passcode = pickUpCode;
@@ -43,7 +51,7 @@ package com.webility.ibutler.view
 		}
 		
 		function generateRandomString(strlen:Number):String{
-			var chars:String = "abcdefghijklmnopqrstuvwxyz0123456789";
+			var chars:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 			var num_chars:Number = chars.length - 1;
 			var randomChar:String = ""; 
 			for (var i:Number = 0; i < strlen; i++){

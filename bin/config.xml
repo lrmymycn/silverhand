@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
 	<lockers>
-		<locker>192.168.100.15</locker>
+		<locker>192.168.1.15</locker>
 		<locker>192.168.100.16</locker>
 	</lockers>
 	<agents>
 		<agent>
-			<name>dryclean</name>
+			<name>DRYCLEAN</name>
 			<password>123456</password>
 			<doors>
 				<door>1701</door>
@@ -14,21 +14,21 @@
 			</doors>
 		</agent>
 		<agent>
-			<name>takeaway</name>
+			<name>TAKEAWAY</name>
 			<password>123456</password>
 			<doors>
 				<door>1201</door>
 			</doors>
 		</agent>
 		<agent>
-			<name>grocery</name>
+			<name>GROCERY</name>
 			<password>123456</password>
 			<doors>
 				<door>2101</door>
 			</doors>
 		</agent>
 		<agent>
-			<name>parcel</name>
+			<name>PARCEL</name>
 			<password>123456</password>
 			<doors>
 				<door>1101</door>
@@ -44,6 +44,26 @@
 		</apartment>
 		<apartment>
 			<unit>A102</unit>
+			<email>huisan@outlook.com</email>
+			<mobile>0413740145</mobile>
+		</apartment>
+		<apartment>
+			<unit>A103</unit>
+			<email>huisan@outlook.com</email>
+			<mobile>0413740145</mobile>
+		</apartment>
+		<apartment>
+			<unit>A104</unit>
+			<email>huisan@outlook.com</email>
+			<mobile>0413740145</mobile>
+		</apartment>
+		<apartment>
+			<unit>A105</unit>
+			<email>huisan@outlook.com</email>
+			<mobile>0413740145</mobile>
+		</apartment>
+		<apartment>
+			<unit>A106</unit>
 			<email>huisan@outlook.com</email>
 			<mobile>0413740145</mobile>
 		</apartment>

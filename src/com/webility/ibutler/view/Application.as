@@ -27,6 +27,7 @@ package com.webility.ibutler.view
 		public var completePanel:CompletePanel;
 		public var pickUpPanel:PickUpPanel;
 		public var logger:Logger;
+		public var keyboard:KeyBoard;
 		
 		public function Application(mc:MovieClip) 
 		{
@@ -38,6 +39,7 @@ package com.webility.ibutler.view
 			_model.pickUpArray = new Array();
 			
 			this.logger = new Logger(_mc.mc_logger);
+			this.keyboard = new KeyBoard(_mc.mc_keyboard);
 			this.testPanel = new TestPanel(_mc.mc_testpanel);
 			this.testPanel.getComponent().y = -2000;
 			this.lockerPanel = new LockerPanel(_mc.mc_lockerpanel);

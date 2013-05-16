@@ -25,7 +25,7 @@ package com.webility.ibutler.view
 			
 			for (var i = 0; i < arr.length; i++) {
 				var button:ApartmentButton = new ApartmentButton(arr[i].unit);
-				var x = i * 160;
+				var x = i * 125;
 				button.x = x;
 				_mc.addChild(button);
 			}
