@@ -6,6 +6,7 @@ package com.webility.ibutler.control
 	import com.webility.ibutler.command.SMSCommand;
 	import com.webility.ibutler.command.OpenCommand;
 	import com.webility.ibutler.command.EnterCommand;
+	import com.webility.ibutler.command.NotificationCommand;
 	/**
 	 * ...
 	 * @author Sam Wang
@@ -17,6 +18,7 @@ package com.webility.ibutler.control
 		public static const SMS:String = 'Controller.SMS';
 		public static const OPEN:String = 'Controller.OPEN';
 		public static const ENTER:String = 'Controller.ENTER';
+		public static const NOTIFICATION:String = 'Controller.NOTIFICATION';
 		
 		public function Controller() 
 		{
@@ -30,6 +32,7 @@ package com.webility.ibutler.control
 			addCommand(SMS, SMSCommand);
 			addCommand(OPEN, OpenCommand);
 			addCommand(ENTER, EnterCommand);
+			addCommand(NOTIFICATION, NotificationCommand);
 		}
 		
 	}

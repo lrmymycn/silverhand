@@ -33,7 +33,7 @@ package com.webility.ibutler.view
 		{
 			this.gotoAndStop(1);
 			trace(_char);
-			if (_model.currentInput != null) {
+			if (_model.currentInput != null && _model.currentInput.text.length < 10) {
 				_model.currentInput.appendText(_char);
 			}
 		}

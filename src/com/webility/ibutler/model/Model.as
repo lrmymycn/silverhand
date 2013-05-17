@@ -18,13 +18,15 @@ package com.webility.ibutler.model
 		public var doors:Array;
 		public var usedDoors:Array;
 		public var currentOpenDoor:String;
-		public var currentUnit:String;
+		public var currentApartment:ApartmentModel;
 		public var agentArray:Array;
 		public var currentAgent:String;
 		public var apartmentArray:Array;
 		public var pickUpArray:Array;
 		public var currentModel:String;
 		public var currentInput:TextField;
+		public var sendEmail:Boolean;
+		public var sendSMS:Boolean;
 		private static var _instance:Model;
 		
 		public static function getInstance():Model 

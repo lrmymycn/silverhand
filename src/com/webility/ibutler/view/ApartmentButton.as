@@ -1,6 +1,7 @@
 package com.webility.ibutler.view 
 {
 	import com.webility.ibutler.model.AgentModel;
+	import com.webility.ibutler.model.ApartmentModel;
 	import com.webility.ibutler.model.Model;
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
@@ -14,14 +15,14 @@ package com.webility.ibutler.view
 	public class ApartmentButton extends MovieClip
 	{
 		private var _model:Model;
-		private var _unit:String;
+		private var _apartment:ApartmentModel;
 		
-		public function ApartmentButton(unit:String) 
+		public function ApartmentButton(apartment:ApartmentModel) 
 		{
 			_model = Model.getInstance();
-			_unit = unit;
+			_apartment = apartment;
 			
-			this.txt_unit.text = unit;
+			this.txt_unit.text = _apartment.unit;
 			this.buttonMode = true;
 			this.mouseChildren = false;
 			this.addEventListener(MouseEvent.CLICK, onMouseClick);
@@ -65,7 +66,7 @@ package com.webility.ibutler.view
 					_model.application.logger.log('All doors are in used');
 				}else {
 					_model.currentOpenDoor = door;
-					_model.currentUnit = _unit;
+					_model.currentApartment = _apartment;;
 					var event:CairngormEvent = new CairngormEvent(Controller.OPEN);
 					event.data = door;
 					CairngormEventDispatcher.getInstance().dispatchEvent(event);

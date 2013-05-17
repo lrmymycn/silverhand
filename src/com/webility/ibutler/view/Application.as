@@ -26,6 +26,7 @@ package com.webility.ibutler.view
 		public var doorOpenMessage:DoorOpenMessage;
 		public var completePanel:CompletePanel;
 		public var pickUpPanel:PickUpPanel;
+		public var adminPanel:AdminPanel;
 		public var logger:Logger;
 		public var keyboard:KeyBoard;
 		
@@ -51,6 +52,7 @@ package com.webility.ibutler.view
 			this.doorOpenMessage = new DoorOpenMessage(_mc.mc_dooropen);
 			this.completePanel = new CompletePanel(_mc.mc_completepanel);
 			this.pickUpPanel = new PickUpPanel(_mc.mc_pickuppanel);
+			this.adminPanel = new AdminPanel(_mc.mc_admin);
 			
 			CairngormEventDispatcher.getInstance().dispatchEvent(new CairngormEvent(Controller.START));
 		}

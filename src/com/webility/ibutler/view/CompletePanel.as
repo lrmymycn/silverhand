@@ -5,6 +5,9 @@ package com.webility.ibutler.view
 	import com.webility.ibutler.model.PickUpModel;
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
+	import com.adobe.cairngorm.control.CairngormEvent;
+	import com.adobe.cairngorm.control.CairngormEventDispatcher;
+	import com.webility.ibutler.control.Controller;
 	/**
 	 * ...
 	 * @author Sam Wang
@@ -38,7 +41,7 @@ package com.webility.ibutler.view
 			var pickUpMode:PickUpModel = new PickUpModel();
 			pickUpMode.passcode = pickUpCode;
 			pickUpMode.door = _model.currentOpenDoor;
-			pickUpMode.unit = _model.currentUnit;
+			pickUpMode.apartment = _model.currentApartment;
 			
 			_model.pickUpArray.push(pickUpMode);
 			_model.application.logger.log('Pickup code: ' + pickUpCode);
@@ -48,6 +51,10 @@ package com.webility.ibutler.view
 			
 			this.hide();
 			_model.application.landingPanel.show();
+			
+			var event:CairngormEvent = new CairngormEvent(Controller.NOTIFICATION);
+			event.data = pickUpMode;
+			CairngormEventDispatcher.getInstance().dispatchEvent(event);
 		}
 		
 		function generateRandomString(strlen:Number):String{

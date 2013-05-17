@@ -6,7 +6,7 @@ package com.webility.ibutler.model
 	 */
 	public class PickUpModel 
 	{
-		public var unit:String;
+		public var apartment:ApartmentModel;
 		public var door:String;
 		public var passcode:String;
 		

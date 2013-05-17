@@ -174,9 +174,17 @@ package com.webility.ibutler.command
 		
 		private function parseXML(xml:XML):void 
 		{
+			parseSettings(xml..settings);
 			parseLock(xml..locker);
 			parseAgent(xml..agent);
 			parseApartment(xml..apartment);
+		}
+		
+		private function parseSettings(dataList:XMLList):void 
+		{
+			var data = dataList[0];
+			_model.sendEmail = data.sendemail;
+			_model.sendSMS = data.sendsms;
 		}
 		
 		private function parseLock(dataList:XMLList):void 

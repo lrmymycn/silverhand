@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
+	<settings>
+		<sendemail>true</sendemail>
+		<sendsms>true</sendsms>
+	</settings>
 	<lockers>
-		<locker>192.168.1.15</locker>
+		<locker>192.168.100.15</locker>
 		<locker>192.168.100.16</locker>
 	</lockers>
 	<agents>
