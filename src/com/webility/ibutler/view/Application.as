@@ -24,11 +24,13 @@ package com.webility.ibutler.view
 		public var agentPanel:AgentPanel;
 		public var apartmentPanel:ApartmentPanel;
 		public var doorOpenMessage:DoorOpenMessage;
+		public var noDoorMessage:NoDoorMessage;
 		public var completePanel:CompletePanel;
 		public var pickUpPanel:PickUpPanel;
 		public var adminPanel:AdminPanel;
 		public var logger:Logger;
 		public var keyboard:KeyBoard;
+		public var agentSelectPanel:AgentSelectPanel;
 		
 		public function Application(mc:MovieClip) 
 		{
@@ -50,9 +52,11 @@ package com.webility.ibutler.view
 			this.agentPanel = new AgentPanel(_mc.mc_agentpanel);
 			this.apartmentPanel = new ApartmentPanel(_mc.mc_apartmentpanel);
 			this.doorOpenMessage = new DoorOpenMessage(_mc.mc_dooropen);
+			this.noDoorMessage = new NoDoorMessage(_mc.mc_nodoor);
 			this.completePanel = new CompletePanel(_mc.mc_completepanel);
 			this.pickUpPanel = new PickUpPanel(_mc.mc_pickuppanel);
 			this.adminPanel = new AdminPanel(_mc.mc_admin);
+			this.agentSelectPanel = new AgentSelectPanel(_mc.mc_agentselectpanel);
 			
 			CairngormEventDispatcher.getInstance().dispatchEvent(new CairngormEvent(Controller.START));
 		}

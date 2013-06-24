@@ -58,7 +58,7 @@ package com.webility.ibutler.view
 		}
 		
 		function generateRandomString(strlen:Number):String{
-			var chars:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			var chars:String = "0123456789";
 			var num_chars:Number = chars.length - 1;
 			var randomChar:String = ""; 
 			for (var i:Number = 0; i < strlen; i++){

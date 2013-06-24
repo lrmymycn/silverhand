@@ -20,22 +20,70 @@ package com.webility.ibutler.view
 		private var keyRow3:String = 'ASDFGHJKL';
 		private var keyRow4:String = 'ZXCVBNM';
 		private var _model:Model;
+		public static const FULL:String = 'KeyBoard.FULL';
+		public static const NUM:String = 'KeyBoard.NUM';
 		
 		public function KeyBoard(mc:MovieClip) 
 		{
 			super(mc);
-			this.generateKeyRow1();
-			this.generateKeyRow2();
-			this.generateKeyRow3();
-			this.generateKeyRow4();
-			
 			_model = Model.getInstance();
+			
+			this.generateFullKeyBoard();
+			this.generateNumKeyBoard();
 			
 			hide();
 		}
 		
-		public function show():void 
+		private function generateFullKeyBoard():void 
 		{
+			this.generateKeyRow1();
+			this.generateKeyRow2();
+			this.generateKeyRow3();
+			this.generateKeyRow4();
+		}
+		
+		private function generateNumKeyBoard():void 
+		{
+			var x = 400;
+			var y = 10;
+			for (var i = 0; i < keyRow1.length; i++)
+			{
+				var char = keyRow1.charAt(i);
+				var key:Key = new Key(char);
+				if (char == '0') {
+					x += keyWidth + keyGap;
+				}
+				key.x = x;
+				key.y = y;
+				_mc.mc_numkeyboard.addChild(key);
+				
+				x += keyWidth + keyGap;
+				
+				if (i % 3 == 2) {
+					x = 400;
+					y = y + keyWidth + 10;
+				}
+			}
+			
+			_mc.mc_numkeyboard.mc_delete.buttonMode = true;
+			_mc.mc_numkeyboard.mc_delete.addEventListener(MouseEvent.MOUSE_DOWN, onDeleteMouseDown);
+			_mc.mc_numkeyboard.mc_delete.addEventListener(MouseEvent.MOUSE_UP, onDeleteMouseUp);
+			
+			_mc.mc_numkeyboard.mc_enter.buttonMode = true;
+			_mc.mc_numkeyboard.mc_enter.addEventListener(MouseEvent.MOUSE_DOWN, onEnterMouseDown);
+			_mc.mc_numkeyboard.mc_enter.addEventListener(MouseEvent.MOUSE_UP, onEnterMouseUp);
+		}
+		
+		public function show(mode:String):void 
+		{
+			if (mode == KeyBoard.FULL) {
+				_mc.mc_fullkeyboard.visible = true;
+				_mc.mc_numkeyboard.visible = false;
+			}
+			else if (mode == KeyBoard.NUM) {
+				_mc.mc_fullkeyboard.visible = false;
+				_mc.mc_numkeyboard.visible = true;
+			}
 			_mc.y = 242;
 		}
 		
@@ -54,7 +102,7 @@ package com.webility.ibutler.view
 				var key:Key = new Key(char);
 				key.x = x;
 				key.y = y;
-				_mc.addChild(key);
+				_mc.mc_fullkeyboard.addChild(key);
 				
 				x += keyWidth + keyGap;
 			}
@@ -62,12 +110,14 @@ package com.webility.ibutler.view
 		
 		private function onDeleteMouseDown(e:MouseEvent):void 
 		{
-			_mc.mc_delete.gotoAndStop(2);
+			var mc:MovieClip = e.target as MovieClip;
+			mc.gotoAndStop(2);
 		}
 		
 		private function onDeleteMouseUp(e:MouseEvent):void 
 		{
-			_mc.mc_delete.gotoAndStop(1);
+			var mc:MovieClip = e.target as MovieClip;
+			mc.gotoAndStop(1);
 			if (_model.currentInput != null) {
 				var text = _model.currentInput.text;
 				if (text.length > 0) {
@@ -87,16 +137,16 @@ package com.webility.ibutler.view
 				var key:Key = new Key(char);
 				key.x = x;
 				key.y = y;
-				_mc.addChild(key);
+				_mc.mc_fullkeyboard.addChild(key);
 				
 				x += keyWidth + keyGap;
 			}
 			
-			_mc.mc_delete.y = y;
-			_mc.mc_delete.x = x;
-			_mc.mc_delete.buttonMode = true;
-			_mc.mc_delete.addEventListener(MouseEvent.MOUSE_DOWN, onDeleteMouseDown);
-			_mc.mc_delete.addEventListener(MouseEvent.MOUSE_UP, onDeleteMouseUp);
+			_mc.mc_fullkeyboard.mc_delete.y = y;
+			_mc.mc_fullkeyboard.mc_delete.x = x;
+			_mc.mc_fullkeyboard.mc_delete.buttonMode = true;
+			_mc.mc_fullkeyboard.mc_delete.addEventListener(MouseEvent.MOUSE_DOWN, onDeleteMouseDown);
+			_mc.mc_fullkeyboard.mc_delete.addEventListener(MouseEvent.MOUSE_UP, onDeleteMouseUp);
 		}
 		
 		private function generateKeyRow3():void 
@@ -109,26 +159,28 @@ package com.webility.ibutler.view
 				var key:Key = new Key(char);
 				key.x = x;
 				key.y = y;
-				_mc.addChild(key);
+				_mc.mc_fullkeyboard.addChild(key);
 				
 				x += keyWidth + keyGap;
 			}
 			
-			_mc.mc_enter.x = x;
-			_mc.mc_enter.y = y;
-			_mc.mc_enter.buttonMode = true;
-			_mc.mc_enter.addEventListener(MouseEvent.MOUSE_DOWN, onEnterMouseDown);
-			_mc.mc_enter.addEventListener(MouseEvent.MOUSE_UP, onEnterMouseUp);
+			_mc.mc_fullkeyboard.mc_enter.x = x;
+			_mc.mc_fullkeyboard.mc_enter.y = y;
+			_mc.mc_fullkeyboard.mc_enter.buttonMode = true;
+			_mc.mc_fullkeyboard.mc_enter.addEventListener(MouseEvent.MOUSE_DOWN, onEnterMouseDown);
+			_mc.mc_fullkeyboard.mc_enter.addEventListener(MouseEvent.MOUSE_UP, onEnterMouseUp);
 		}
 		
 		private function onEnterMouseDown(e:MouseEvent):void 
 		{
-			_mc.mc_enter.gotoAndStop(2);
+			var mc:MovieClip = e.currentTarget as MovieClip;
+			mc.gotoAndStop(2);
 		}
 		
 		private function onEnterMouseUp(e:MouseEvent):void 
 		{
-			_mc.mc_enter.gotoAndStop(1);
+			var mc:MovieClip = e.currentTarget as MovieClip;
+			mc.gotoAndStop(1);
 			var event:CairngormEvent = new CairngormEvent(Controller.ENTER);
 			CairngormEventDispatcher.getInstance().dispatchEvent(event);
 		}
@@ -143,7 +195,7 @@ package com.webility.ibutler.view
 				var key:Key = new Key(char);
 				key.x = x;
 				key.y = y;
-				_mc.addChild(key);
+				_mc.mc_fullkeyboard.addChild(key);
 				
 				x += keyWidth + keyGap;
 			}

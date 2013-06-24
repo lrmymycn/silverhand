@@ -46,34 +46,36 @@ package com.webility.ibutler.view
 				_model.application.logger.log('Agent not found');
 			}else {
 				var doors:Array = agent.doors;
+				if (_model.usedDoors.length == doors.length) {
+					//All doors are in used, reset
+					_model.usedDoors = new Array();
+				}
+				
 				var door:String = '';
 				for (i = 0; i < doors.length; i++) {
-					door = doors[i];
+					var d = doors[i];
 					var doorIsUsed = false;
 					for (var j = 0; j < _model.usedDoors.length ; j++) {
-						if (door == _model.usedDoors[j]) {
+						if (d == _model.usedDoors[j]) {
 							//the door is used
 							doorIsUsed = true;
 							break;
 						}
 					}
 					if (!doorIsUsed) {
+						door = d;
 						break;
 					}
 				}
 				
-				if (door == '') {
-					_model.application.logger.log('All doors are in used');
-				}else {
-					_model.currentOpenDoor = door;
-					_model.currentApartment = _apartment;;
-					var event:CairngormEvent = new CairngormEvent(Controller.OPEN);
-					event.data = door;
-					CairngormEventDispatcher.getInstance().dispatchEvent(event);
-					
-					this.addEventListener(MouseEvent.CLICK, onMouseClick);
-				}
+				_model.currentOpenDoor = door;
+				_model.currentApartment = _apartment;;
+				var event:CairngormEvent = new CairngormEvent(Controller.OPEN);
+				event.data = door;
+				CairngormEventDispatcher.getInstance().dispatchEvent(event);
 			}
+			
+			this.addEventListener(MouseEvent.CLICK, onMouseClick);
 		}
 	}
 

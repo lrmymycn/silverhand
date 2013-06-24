@@ -25,8 +25,9 @@ package com.webility.ibutler.model
 		public var pickUpArray:Array;
 		public var currentModel:String;
 		public var currentInput:TextField;
-		public var sendEmail:Boolean;
-		public var sendSMS:Boolean;
+		public var sendEmail:String;
+		public var sendSMS:String;
+		public var currentLanguage:String;
 		private static var _instance:Model;
 		
 		public static function getInstance():Model 

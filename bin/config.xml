@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
 	<settings>
-		<sendemail>true</sendemail>
-		<sendsms>true</sendsms>
+		<sendemail>false</sendemail>
+		<sendsms>false</sendsms>
 	</settings>
 	<lockers>
-		<locker>192.168.100.15</locker>
+		<locker>127.0.0.1</locker>
 		<locker>192.168.100.16</locker>
 	</lockers>
 	<agents>
@@ -14,7 +14,7 @@
 			<password>123456</password>
 			<doors>
 				<door>1701</door>
-				<door>2701</door>
+				<door>1201</door>
 			</doors>
 		</agent>
 		<agent>

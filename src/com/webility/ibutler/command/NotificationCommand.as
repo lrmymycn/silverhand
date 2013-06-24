@@ -5,6 +5,7 @@ package com.webility.ibutler.command
 	import com.webility.ibutler.model.ApartmentModel;
 	import com.webility.ibutler.model.Model;
 	import com.webility.ibutler.model.PickUpModel;
+	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.net.URLRequestMethod;
@@ -32,11 +33,11 @@ package com.webility.ibutler.command
 			req.method = URLRequestMethod.POST;
 			var data:URLVariables = new URLVariables();
 			data.code = pickup.passcode;
-			if (_model.sendEmail)
+			if (_model.sendEmail == "true")
 			{
 				data.email = pickup.apartment.email;
 			}
-			if (_model.sendSMS)
+			if (_model.sendSMS == "true")
 			{
 				data.mobile = pickup.apartment.mobile;
 			}
@@ -45,6 +46,7 @@ package com.webility.ibutler.command
 			
 			var loader:URLLoader = new URLLoader();
 			loader.addEventListener(Event.COMPLETE, onLoadComplete);
+			loader.addEventListener(IOErrorEvent.IO_ERROR, onLoadError);
 			loader.load(req);
 			
 		}
@@ -56,6 +58,11 @@ package com.webility.ibutler.command
 			
 			_model.application.logger.log(json.messages);			
 			_model.application.testPanel.enableButtons();
+		}
+		
+		private function onLoadError(e:IOErrorEvent):void 
+		{
+			trace(e);
 		}
 	}
 

@@ -210,6 +210,8 @@ package com.webility.ibutler.command
 				arr.push(model);
 			}
 			_model.agentArray = arr;
+			
+			_model.application.agentSelectPanel.init();
 		}
 		
 		private function parseDoor(doors:XMLList, model:AgentModel):void 

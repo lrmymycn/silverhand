@@ -23,7 +23,7 @@ package com.webility.ibutler.view
 			_mc.btn_back.buttonMode = true;
 			_mc.btn_back.addEventListener(MouseEvent.CLICK, onBackClick);
 			
-			_mc.txt_agentname.addEventListener(FocusEvent.FOCUS_IN, onAgentNameFocus);
+			//_mc.txt_agentname.addEventListener(FocusEvent.FOCUS_IN, onAgentNameFocus);
 			//_mc.txt_agentname.addEventListener(FocusEvent.FOCUS_OUT, onAgentNameBlur);
 			_mc.txt_password.addEventListener(FocusEvent.FOCUS_IN, onPasswordFocus);
 			//_mc.txt_password.addEventListener(FocusEvent.FOCUS_OUT, onPasswordBlur);
@@ -101,9 +101,12 @@ package com.webility.ibutler.view
 		public function show():void 
 		{
 			_mc.y = 150;
-			_model.application.keyboard.show();
-			_mc.txt_agentname.stage.focus = _mc.txt_agentname;
-			_mc.txt_agentname.setSelection(0, _mc.txt_agentname.length);
+			_model.application.keyboard.show(KeyBoard.NUM);
+			//_mc.txt_agentname.stage.focus = _mc.txt_agentname;
+			//_mc.txt_agentname.setSelection(0, _mc.txt_agentname.length);
+			_mc.txt_agentname.text = _model.currentAgent;
+			_mc.txt_password.stage.focus = _mc.txt_password;
+			_mc.txt_password.setSelection(0, _mc.txt_password.length);
 		}
 		
 		public function hide():void 

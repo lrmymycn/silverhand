@@ -28,6 +28,15 @@ package com.webility.ibutler.view
 			_mc.btn_back.addEventListener(MouseEvent.CLICK, onBackClick);
 			_mc.txt_code.addEventListener(FocusEvent.FOCUS_IN, onCodeFocus);
 			//_mc.txt_code.addEventListener(FocusEvent.FOCUS_OUT, onCodeBlur);
+			
+			_mc.btn_au.buttonMode = true;
+			_mc.btn_au.addEventListener(MouseEvent.CLICK, onFlagClick);
+			_mc.btn_cn.buttonMode = true;
+			_mc.btn_cn.addEventListener(MouseEvent.CLICK, onFlagClick);
+			_mc.btn_jp.buttonMode = true;
+			_mc.btn_jp.addEventListener(MouseEvent.CLICK, onFlagClick);
+			_mc.btn_kr.buttonMode = true;
+			_mc.btn_kr.addEventListener(MouseEvent.CLICK, onFlagClick);
 		}
 		
 		private function onCodeFocus(e:FocusEvent):void 
@@ -39,6 +48,30 @@ package com.webility.ibutler.view
 		private function onCodeBlur(e:FocusEvent):void 
 		{
 			_mc.mc_code_bg.gotoAndStop(1);
+		}
+		
+		private function onFlagClick(e:MouseEvent):void 
+		{
+			var name = e.target.name;
+			switch (name) 
+			{
+				case 'btn_au':
+					_model.currentLanguage = 'au';
+					break;
+				case 'btn_cn':
+					_model.currentLanguage = 'cn';
+					break;
+				case 'btn_jp':
+					_model.currentLanguage = 'jp';
+					break;
+				case 'btn_kr':
+					_model.currentLanguage = 'kr';
+					break;
+				default:
+					break;
+			}
+			
+			_mc.mc_label.gotoAndStop(_model.currentLanguage);
 		}
 		
 		public function login():void 
@@ -102,7 +135,7 @@ package com.webility.ibutler.view
 		public function show():void 
 		{
 			_mc.y = 150;
-			_model.application.keyboard.show();
+			_model.application.keyboard.show(KeyBoard.NUM);
 
 			_mc.txt_code.stage.focus = _mc.txt_code;
 			_mc.txt_code.setSelection(0, _mc.txt_code.length);

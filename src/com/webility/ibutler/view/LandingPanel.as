@@ -37,7 +37,8 @@ package com.webility.ibutler.view
 			_mc.btn_agentlogin.gotoAndStop(1);
 			_model.currentModel = Application.AGENT;
 			this.hide();
-			_model.application.agentLoginPanel.show();
+			//_model.application.agentLoginPanel.show();
+			_model.application.agentSelectPanel.show();
 		}
 		
 		private function onPickUpMouseDown(e:MouseEvent):void 
