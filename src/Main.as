@@ -13,7 +13,7 @@ package
 		
 		public function Main() 
 		{
-			stage.displayState = StageDisplayState.FULL_SCREEN;
+			//stage.displayState = StageDisplayState.FULL_SCREEN;
 			_app = new Application(this);
 		}
 		

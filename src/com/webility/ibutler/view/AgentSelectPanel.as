@@ -26,17 +26,17 @@ package com.webility.ibutler.view
 		public function init():void 
 		{
 			var arr:Array = _model.agentArray;
-			var x = 50;
-			var y = 0;
+			var x = 0;
+			var y = 200;
 			for (var i = 0; i < arr.length; i++) {
 				if (i % 2 == 0) {
-					x = 50;
+					x = 0;
 				}else {
-					x = 395;
+					x = 305;
 				}
 				
 				if (i > 1) {
-					y = 200;
+					y = 400;
 				}
 				
 				var button:AgentButton = new AgentButton(arr[i]);

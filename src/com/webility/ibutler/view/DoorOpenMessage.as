@@ -18,7 +18,7 @@ package com.webility.ibutler.view
 		
 		public function show():void 
 		{
-			_mc.y = 150;
+			_mc.y = 470;
 		}
 		
 		public function hide():void 

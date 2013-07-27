@@ -44,7 +44,7 @@ package com.webility.ibutler.view
 		
 		private function generateNumKeyBoard():void 
 		{
-			var x = 400;
+			var x = 220;
 			var y = 10;
 			for (var i = 0; i < keyRow1.length; i++)
 			{
@@ -60,7 +60,7 @@ package com.webility.ibutler.view
 				x += keyWidth + keyGap;
 				
 				if (i % 3 == 2) {
-					x = 400;
+					x = 220;
 					y = y + keyWidth + 10;
 				}
 			}
@@ -84,7 +84,7 @@ package com.webility.ibutler.view
 				_mc.mc_fullkeyboard.visible = false;
 				_mc.mc_numkeyboard.visible = true;
 			}
-			_mc.y = 242;
+			_mc.y = 840;
 		}
 		
 		public function hide():void 

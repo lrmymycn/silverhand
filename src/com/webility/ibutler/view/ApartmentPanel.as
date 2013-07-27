@@ -22,11 +22,15 @@ package com.webility.ibutler.view
 		public function init():void
 		{
 			var arr:Array = _model.apartmentArray;
-			
 			for (var i = 0; i < arr.length; i++) {
 				var button:ApartmentButton = new ApartmentButton(arr[i]);
-				var x = i * 125;
+				var a = i % 4;
+				var b = Math.floor(i / 4);
+				var x = a * 150;
+				var y = b * 50;
+				
 				button.x = x;
+				button.y = y;
 				_mc.addChild(button);
 			}
 		}
