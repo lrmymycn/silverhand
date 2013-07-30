@@ -47,10 +47,11 @@ package com.webility.ibutler.view
 			_model.application.logger.log('Pickup code: ' + pickUpCode);
 			
 			_model.usedDoors.push(_model.currentOpenDoor);
-			_model.currentOpenDoor = '';
+			_model.currentOpenDoor = null;
 			
 			this.hide();
 			_model.application.landingPanel.show();
+			_model.application.pickUpPanel.show();
 			
 			var event:CairngormEvent = new CairngormEvent(Controller.NOTIFICATION);
 			event.data = pickUpMode;

@@ -23,7 +23,7 @@ package com.webility.ibutler.view
 		public var agentLoginPanel:AgentLoginPanel;
 		public var agentPanel:AgentPanel;
 		public var apartmentPanel:ApartmentPanel;
-		public var doorOpenMessage:DoorOpenMessage;
+		public var locker:Locker;
 		public var noDoorMessage:NoDoorMessage;
 		public var completePanel:CompletePanel;
 		public var pickUpPanel:PickUpPanel;
@@ -51,7 +51,7 @@ package com.webility.ibutler.view
 			this.agentLoginPanel = new AgentLoginPanel(_mc.mc_agentloginpanel);
 			this.agentPanel = new AgentPanel(_mc.mc_agentpanel);
 			this.apartmentPanel = new ApartmentPanel(_mc.mc_apartmentpanel);
-			this.doorOpenMessage = new DoorOpenMessage(_mc.mc_dooropen);
+			this.locker = new Locker(_mc.mc_dooropen);
 			this.noDoorMessage = new NoDoorMessage(_mc.mc_nodoor);
 			this.completePanel = new CompletePanel(_mc.mc_completepanel);
 			this.pickUpPanel = new PickUpPanel(_mc.mc_pickuppanel);

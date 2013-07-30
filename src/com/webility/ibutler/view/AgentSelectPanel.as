@@ -26,19 +26,12 @@ package com.webility.ibutler.view
 		public function init():void 
 		{
 			var arr:Array = _model.agentArray;
-			var x = 0;
+			var x = 170;
 			var y = 200;
 			for (var i = 0; i < arr.length; i++) {
-				if (i % 2 == 0) {
-					x = 0;
-				}else {
-					x = 305;
-				}
 				
-				if (i > 1) {
-					y = 400;
-				}
-				
+				y =  170 * (i + 1) + 70;
+				trace(y);
 				var button:AgentButton = new AgentButton(arr[i]);
 				button.x = x;
 				button.y = y;
@@ -50,6 +43,7 @@ package com.webility.ibutler.view
 		{
 			this.hide();
 			_model.application.landingPanel.show();
+			_model.application.pickUpPanel.show();
 		}
 		
 		public function show():void 

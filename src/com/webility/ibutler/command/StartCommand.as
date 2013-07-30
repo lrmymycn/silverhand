@@ -3,6 +3,7 @@ package com.webility.ibutler.command
 	import com.adobe.cairngorm.commands.ICommand;
 	import com.adobe.cairngorm.control.CairngormEvent;
 	import com.webility.ibutler.model.AgentModel;
+	import com.webility.ibutler.model.DoorModel;
 	import com.webility.ibutler.model.Model;
 	import com.webility.ibutler.model.ApartmentModel;
 	import com.webility.ibutler.view.Application;
@@ -75,14 +76,17 @@ package com.webility.ibutler.command
 			_model.application.logger.log(response);
 			socket.close();
 			
-			_model.application.doorOpenMessage.hide();
+			_model.application.locker.hide();
 			if (_model.currentModel == Application.AGENT)
 			{
 				_model.application.completePanel.show();
+				_model.application.locker.LockDoor(_model.currentOpenDoor.mc);
 			}
 			else if(_model.currentModel == Application.PICKUP)
 			{
 				_model.application.landingPanel.show();
+				_model.application.pickUpPanel.show();
+				_model.application.locker.ReleaseDoor(_model.currentOpenDoor.mc);
 			}
 		}
 		
@@ -145,7 +149,7 @@ package com.webility.ibutler.command
 			else if(_model.currentModel == Application.PICKUP){
 				_model.application.pickUpPanel.hide();
 			}
-			_model.application.doorOpenMessage.show();
+			_model.application.locker.show();
 		}
 		
 		private function onSocketError(e:IOErrorEvent):void 
@@ -202,12 +206,12 @@ package com.webility.ibutler.command
 		{
 			var arr:Array = new Array();
 			for each(var agent:XML in dataList) {
-				var model:AgentModel = new AgentModel();
-				model.name = agent.name;
-				model.password = agent.password;
-				model.doors = new Array();
-				parseDoor(agent..door, model);
-				arr.push(model);
+				var agentModel:AgentModel = new AgentModel();
+				agentModel.name = agent.name;
+				agentModel.password = agent.password;
+				agentModel.doors = new Array();
+				parseDoor(agent..door, agentModel);
+				arr.push(agentModel);
 			}
 			_model.agentArray = arr;
 			
@@ -217,7 +221,10 @@ package com.webility.ibutler.command
 		private function parseDoor(doors:XMLList, model:AgentModel):void 
 		{
 			for each (var door:XML in doors) {
-				model.doors.push(door);
+				var doorModel:DoorModel = new DoorModel();
+				doorModel.code = door.code;
+				doorModel.mc = door.movieclip;
+				model.doors.push(doorModel);
 			}
 		}
 		

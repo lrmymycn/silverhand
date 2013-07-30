@@ -24,10 +24,10 @@ package com.webility.ibutler.view
 			var arr:Array = _model.apartmentArray;
 			for (var i = 0; i < arr.length; i++) {
 				var button:ApartmentButton = new ApartmentButton(arr[i]);
-				var a = i % 4;
-				var b = Math.floor(i / 4);
-				var x = a * 150;
-				var y = b * 50;
+				var a = i % 3;
+				var b = Math.floor(i / 3);
+				var x = a * 170 + 50;
+				var y = (b * 140) + 280;
 				
 				button.x = x;
 				button.y = y;

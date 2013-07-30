@@ -52,6 +52,7 @@ package com.webility.ibutler.view
 		{
 			this.hide();
 			_model.application.landingPanel.show();
+			_model.application.pickUpPanel.show();
 		}
 		
 		private function checkPassword(agentName:String, password:String):Boolean 

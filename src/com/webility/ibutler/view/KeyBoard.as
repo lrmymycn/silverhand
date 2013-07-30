@@ -45,7 +45,7 @@ package com.webility.ibutler.view
 		private function generateNumKeyBoard():void 
 		{
 			var x = 220;
-			var y = 10;
+			var y = -20;
 			for (var i = 0; i < keyRow1.length; i++)
 			{
 				var char = keyRow1.charAt(i);

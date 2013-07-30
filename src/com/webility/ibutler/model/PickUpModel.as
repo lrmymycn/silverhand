@@ -7,7 +7,7 @@ package com.webility.ibutler.model
 	public class PickUpModel 
 	{
 		public var apartment:ApartmentModel;
-		public var door:String;
+		public var door:DoorModel;
 		public var passcode:String;
 		
 		public function PickUpModel() 

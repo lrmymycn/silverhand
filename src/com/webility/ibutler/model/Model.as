@@ -17,7 +17,7 @@ package com.webility.ibutler.model
 		public var dataToSend:String = '';
 		public var doors:Array;
 		public var usedDoors:Array;
-		public var currentOpenDoor:String;
+		public var currentOpenDoor:DoorModel;
 		public var currentApartment:ApartmentModel;
 		public var agentArray:Array;
 		public var currentAgent:String;

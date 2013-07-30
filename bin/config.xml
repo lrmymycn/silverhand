@@ -6,37 +6,44 @@
 	</settings>
 	<lockers>
 		<locker>127.0.0.1</locker>
-		<locker>192.168.100.16</locker>
 	</lockers>
 	<agents>
 		<agent>
 			<name>DRYCLEAN</name>
 			<password>123456</password>
 			<doors>
-				<door>1701</door>
-				<door>1201</door>
-			</doors>
-		</agent>
-		<agent>
-			<name>TAKEAWAY</name>
-			<password>123456</password>
-			<doors>
-				<door>1201</door>
+				<door>
+					<code>1101</code>
+					<movieclip>mc_dryclean</movieclip>
+				</door>
 			</doors>
 		</agent>
 		<agent>
 			<name>GROCERY</name>
 			<password>123456</password>
 			<doors>
-				<door>2101</door>
+				<door>
+					<code>1201</code>
+					<movieclip>mc_grocery</movieclip>
+				</door>
 			</doors>
 		</agent>
 		<agent>
 			<name>PARCEL</name>
 			<password>123456</password>
 			<doors>
-				<door>1101</door>
-				<door>2201</door>
+				<door>
+					<code>1301</code>
+					<movieclip>mc_large</movieclip>
+				</door>
+				<door>
+					<code>1401</code>
+					<movieclip>mc_middle</movieclip>
+				</door>
+				<door>
+					<code>1501</code>
+					<movieclip>mc_small</movieclip>
+				</door>
 			</doors>
 		</agent>
 	</agents>

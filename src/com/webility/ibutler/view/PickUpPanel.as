@@ -1,6 +1,7 @@
 package com.webility.ibutler.view 
 {
 	import com.captainsoft.flash.view.Component;
+	import com.webility.ibutler.model.DoorModel;
 	import com.webility.ibutler.model.Model;
 	import com.webility.ibutler.model.PickUpModel;
 	import flash.display.MovieClip;
@@ -22,7 +23,7 @@ package com.webility.ibutler.view
 			super(mc);
 			_model = Model.getInstance();
 			
-			this.hide();
+			//this.hide();
 			
 			_mc.btn_back.buttonMode = true;
 			_mc.btn_back.addEventListener(MouseEvent.CLICK, onBackClick);
@@ -43,6 +44,10 @@ package com.webility.ibutler.view
 		{
 			_mc.mc_code_bg.gotoAndStop(2);
 			_model.currentInput = _mc.txt_code;
+			
+			_model.application.keyboard.show(KeyBoard.NUM);
+			_model.application.landingPanel.hide();
+			_model.currentModel = Application.PICKUP;
 		}
 		
 		private function onCodeBlur(e:FocusEvent):void 
@@ -86,13 +91,14 @@ package com.webility.ibutler.view
 		
 		private function onBackClick(e:MouseEvent):void 
 		{
-			this.hide();
+			//this.hide();
+			_model.application.keyboard.hide();
 			_model.application.landingPanel.show();
 		}
 		
 		private function openDoor(code:String):void 
 		{
-			var door = '';
+			var door:DoorModel = null;
 			var i = 0;
 			for (i = 0; i < _model.pickUpArray.length; i++) {
 				var pickUpModel:PickUpModel = _model.pickUpArray[i];
@@ -102,7 +108,7 @@ package com.webility.ibutler.view
 				}
 			}
 			
-			if (door == '') {
+			if (door == null) {
 				_mc.txt_error.text = 'invalid pick up code';
 			}else {
 				_model.currentOpenDoor = door;
@@ -113,15 +119,17 @@ package com.webility.ibutler.view
 				
 				var j = 0;
 				for (j = 0; j < _model.usedDoors.length; j++) {
-					if (_model.usedDoors[j] == door) {
+					if (_model.usedDoors[j].code == door.code) {
 						break;
 					}
 				}
 				_model.usedDoors.splice(j, 1);
 				
 				var event:CairngormEvent = new CairngormEvent(Controller.OPEN);
-				event.data = door;
+				event.data = door.code;
 				CairngormEventDispatcher.getInstance().dispatchEvent(event);
+				
+				_model.application.locker.OpenDoor(door.mc);
 			}
 		}
 		
@@ -135,10 +143,9 @@ package com.webility.ibutler.view
 		public function show():void 
 		{
 			_mc.y = 150;
-			_model.application.keyboard.show(KeyBoard.NUM);
-
-			_mc.txt_code.stage.focus = _mc.txt_code;
-			_mc.txt_code.setSelection(0, _mc.txt_code.length);
+			
+			//_mc.txt_code.stage.focus = _mc.txt_code;
+			//_mc.txt_code.setSelection(0, _mc.txt_code.length);
 		}
 	}
 

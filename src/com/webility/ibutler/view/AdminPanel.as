@@ -20,7 +20,6 @@ package com.webility.ibutler.view
 		
 		private function onDoubleClick(e:MouseEvent):void 
 		{
-			trace('kk');
 			_mc.stage.displayState = StageDisplayState.FULL_SCREEN;
 		}
 	}

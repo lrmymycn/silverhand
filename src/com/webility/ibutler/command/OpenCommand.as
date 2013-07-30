@@ -23,11 +23,9 @@ package com.webility.ibutler.command
 		{
 			var destination = code.charAt(0);
 			var ip = '';
-			if (destination == '1') {
-				ip = _model.lockerAddressList[0];
-			}else if (destination == '2') {
-				ip = _model.lockerAddressList[1];
-			}
+			var index = Number(destination) - 1;
+
+			ip = _model.lockerAddressList[index];
 			
 			if (ip == '') {
 				_model.application.logger.log('No client is connected');
